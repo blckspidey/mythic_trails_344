@@ -1,73 +1,92 @@
-# Welcome to your Lovable project
+🛕 Mythic_Trials
 
-## Project info
+A modern UI-based web application showcasing temples, their history, architecture, cultural significance, and detailed listings. Built with a clean, responsive, and elegant frontend.
 
-**URL**: https://lovable.dev/projects/cacff280-fa39-4f83-8f78-70e6b571e510
+📌 Overview
 
-## How can I edit this code?
+Mythic_Trials is a frontend project that presents comprehensive information about various temples.
+Users can explore temple listings, read about their historical and mythological background, view images, and understand cultural details — all through a visually rich interface.
 
-There are several ways of editing your application.
+This project focuses entirely on the UI/UX layer, without backend or database integration (yet).
 
-**Use Lovable**
+✨ Features
+🔹 Temple Listing
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/cacff280-fa39-4f83-8f78-70e6b571e510) and start prompting.
+Browse a curated list of temples
 
-Changes made via Lovable will be committed automatically to this repo.
+Each card includes name, location, and a preview image
 
-**Use your preferred IDE**
+🔹 Temple Detail Pages
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Historical background
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Mythology and stories
 
-Follow these steps:
+Architectural style
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Rituals & festivals
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Visiting information
 
-# Step 3: Install the necessary dependencies.
-npm i
+Image gallery
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+🔹 Clean & Responsive UI
+
+Fully mobile-friendly
+
+Smooth navigation
+
+Consistent design with Tailwind + Shadcn UI
+
+🔹 Visual Highlights
+
+High-quality imagery
+
+Typography optimized for readability
+
+Modern layout inspired by heritage & culture
+
+🧰 Tech Stack
+
+Frontend
+
+React
+
+TypeScript
+
+Vite
+
+Tailwind CSS
+
+Shadcn UI
+
+Lucide Icons
+
+📂 Project Structure
+src/
+ ├── components/       # Reusable UI components
+ ├── pages/            # Temple list, detail pages
+ ├── assets/           # Images & static files
+ ├── data/             # Static data (optional)
+ ├── App.tsx           # App routes & layout
+ └── main.tsx          # Entry point
+
+🚀 Getting Started
+1️⃣ Clone the repository
+git clone <YOUR_REPO_URL>
+cd Mythic_Trials
+
+2️⃣ Install dependencies
+npm install
+
+3️⃣ Start development server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
+📸 Screenshots
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+(Replace with your actual UI images)
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/cacff280-fa39-4f83-8f78-70e6b571e510) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+![Home Page](./screenshots/home.png)
+![Temple Details](./screenshots/details.png)
