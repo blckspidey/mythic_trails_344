@@ -75,14 +75,14 @@ const Home = () => {
                 <ChevronRight className="ml-2" />
               </Button>
             </Link>
-            <Link to="/stories">
+            <Link to="/plantrip">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-temple-gold/60 text-temple-gold bg-transparent hover:bg-temple-gold/10 hover:border-temple-gold hover:shadow-divine transition-all duration-300 font-nav tracking-wide text-base px-8 py-6"
               >
                 <BookOpen className="mr-2" />
-                READ STORIES
+                PLAN TRIP
               </Button>
             </Link>
           </div>
