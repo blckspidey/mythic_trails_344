@@ -1,9 +1,8 @@
-import { link } from "fs";
 
 export const temples = [
   {
     id: "kashi-vishwanath",
-    link:"https://maps.app.goo.gl/ciiSFTiB3r4sz6Q38",
+    glink:"https://maps.app.goo.gl/ciiSFTiB3r4sz6Q38",
     name: "Kashi Vishwanath",
     nameDevanagari: "काशी विश्वनाथ",
     region: "Aryavarta",
@@ -19,7 +18,7 @@ export const temples = [
   },
   {
     id: "kedarnath",
-    link:"https://maps.app.goo.gl/hTA1cQddUu71a14o9",
+    glink:"https://maps.app.goo.gl/hTA1cQddUu71a14o9",
     name: "Kedarnath Temple",
     nameDevanagari: "केदारनाथ",
     region: "Himalayas",
@@ -35,7 +34,7 @@ export const temples = [
   },
   {
     id: "rameshwaram",
-    link:"https://maps.app.goo.gl/6YEjrJQNCQLSzBNT7",
+    glink:"https://maps.app.goo.gl/6YEjrJQNCQLSzBNT7",
     name: "Ramanathaswamy Temple",
     nameDevanagari: "रामनाथस्वामी",
     region: "Dakshinapatha",
@@ -51,7 +50,7 @@ export const temples = [
   },
   {
     id: "dwarka",
-    link: "https://maps.app.goo.gl/u9cYfdobCpijzNp3A",
+    glink: "https://maps.app.goo.gl/u9cYfdobCpijzNp3A",
     name: "Dwarkadhish Temple",
     nameDevanagari: "द्वारकाधीश",
     region: "Anarta",
@@ -67,7 +66,7 @@ export const temples = [
   },
   {
     id: "konark",
-    link: "https://maps.app.goo.gl/hJs2WXdjujRh3GcY7",
+    glink: "https://maps.app.goo.gl/hJs2WXdjujRh3GcY7",
     name: "Konark Sun Temple",
     nameDevanagari: "कोणार्क",
     region: "Kalinga",
@@ -83,7 +82,7 @@ export const temples = [
   },
   {
     id: "khajuraho",
-    link: "https://maps.app.goo.gl/gbByuDrbTfRBnQSY7",
+    glink: "https://maps.app.goo.gl/gbByuDrbTfRBnQSY7",
     name: "Khajuraho Temples",
     nameDevanagari: "खजुराहो",
     region: "Madhya Pradesh",
@@ -99,7 +98,7 @@ export const temples = [
   },
   {
     id: "somnath",
-    link: "https://maps.app.goo.gl/vwixdhzodPGaWrabA",
+    glink: "https://maps.app.goo.gl/vwixdhzodPGaWrabA",
     name: "Somnath Temple",
     nameDevanagari: "सोमनाथ",
     region: "Anarta",
@@ -115,7 +114,7 @@ export const temples = [
   },
   {
     id: "amarnath",
-    link: "https://maps.app.goo.gl/nLhRzPAkRKV3978c7",
+    glink: "https://maps.app.goo.gl/nLhRzPAkRKV3978c7",
     name: "Amarnath Cave",
     nameDevanagari: "अमरनाथ",
     region: "Kashmir",
@@ -131,7 +130,7 @@ export const temples = [
   },
   {
     id: "badrinath",
-    link: "https://maps.app.goo.gl/VoT1zkAgdjkweHST7",
+    glink: "https://maps.app.goo.gl/VoT1zkAgdjkweHST7",
     name: "Badrinath Temple",
     nameDevanagari: "बद्रीनाथ",
     region: "Himalayas",
@@ -147,7 +146,7 @@ export const temples = [
   },
   {
     id: "meenakshi",
-    link: "https://maps.app.goo.gl/URFFpS8M4z8kabMM7",
+    glink: "https://maps.app.goo.gl/URFFpS8M4z8kabMM7",
     name: "Meenakshi Temple",
     nameDevanagari: "मीनाक्षी",
     region: "Dakshinapatha",
@@ -163,7 +162,7 @@ export const temples = [
   },
   {
     id: "ajanta",
-    link: "https://maps.app.goo.gl/EitvFgsLAyuqmQ5G8",
+    glink: "https://maps.app.goo.gl/EitvFgsLAyuqmQ5G8",
     name: "Ajanta Caves",
     nameDevanagari: "अजंता",
     region: "Marathwada",
@@ -179,7 +178,7 @@ export const temples = [
   },
   {
     id: "bodh-gaya",
-    link: "https://maps.app.goo.gl/ZG1o22CHou3umsgF6",
+    glink: "https://maps.app.goo.gl/ZG1o22CHou3umsgF6",
     name: "Mahabodhi Temple",
     nameDevanagari: "महाबोधि",
     region: "Magadha",
