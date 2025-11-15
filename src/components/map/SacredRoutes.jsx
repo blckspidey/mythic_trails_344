@@ -27,7 +27,7 @@ export const SacredRoutes = ({ onRouteToggle, activeRoute }) => {
               return (
                 <button
                   key={route.name}
-                  onClick={() => onRouteToggle(isActive ? [] : route.temples)}
+                  onClick={() => { onRouteToggle(isActive ? [] : route.temples); setIsOpen(!isOpen);}}
                   className={`w-full text-left p-3 rounded-md border-2 transition-all duration-300 ${
                     isActive
                       ? "bg-temple-gold/20 border-temple-gold shadow-divine"
