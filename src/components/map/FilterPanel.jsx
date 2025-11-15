@@ -15,7 +15,7 @@ const filterCategories = [
 ];
 
 export const FilterPanel = ({ onFilterChange, activeFilters }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleFilter = (filterId) => {
     const newFilters = activeFilters.includes(filterId)
