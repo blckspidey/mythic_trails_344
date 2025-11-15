@@ -7,7 +7,7 @@ import omSymbol from "@/assets/om-symbol.png";
 import trail1 from "@/assets/trail-1.jpg";
 import trail2 from "@/assets/trail-2.jpg";
 import trail3 from "@/assets/trail-3.jpg";
-
+//temple information for featured trails
 const Home = () => {
   const featuredTrails = [
     {
@@ -15,21 +15,21 @@ const Home = () => {
       image: trail1,
       title: "Khajuraho's Divine Sculptures",
       subtitle: "Madhya Pradesh · Chandela Era",
-      description: "Ancient temples adorned with celestial artistry",
+      description: "Ancient temples draped in celestial artistry.",
     },
     {
       id: 2,
       image: trail2,
       title: "Hampi's Sacred Ruins",
       subtitle: "Karnataka · Vijayanagara Empire",
-      description: "Where stone pillars whisper forgotten hymns",
+      description: "Where ancient pillars murmur lost hymns.",
     },
     {
       id: 3,
       image: trail3,
       title: "Varanasi's Eternal Ghats",
       subtitle: "Uttar Pradesh · Timeless",
-      description: "The spiritual heart of ancient Bharat",
+      description: "The sacred heart of ancient Bharat.",
     },
   ];
 
