@@ -11,7 +11,7 @@ export const TempleMarker = ({ temple, isFiltered }) => {
     <HoverCard openDelay={200}>
       <HoverCardTrigger asChild>
         <button
-          onClick={() => navigate(`/trails/${temple.id}`)}
+          onClick={() => window.open(temple.glink, "_blank")}
           className="absolute transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
           style={{
             left: `${((temple.coordinates[1] + 180) / 360) * 100}%`,
