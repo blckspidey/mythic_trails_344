@@ -172,6 +172,17 @@ const Map = () => {
                           <feMergeNode in="SourceGraphic" />
                         </feMerge>
                       </filter>
+                        <style>
+                        {`
+                          @keyframes routeFlow {
+                            0% { stroke-dashoffset: 15; }
+                            100% { stroke-dashoffset: 0; }
+                          }
+                          .route-line {
+                            animation: routeFlow 2s linear infinite;
+                          }
+                        `}
+                      </style>
                     </defs>
                     {activeRouteTemples.map((templeId, index) => {
                       if (index === activeRouteTemples.length - 1) return null;
@@ -194,8 +205,8 @@ const Map = () => {
                             stroke="url(#routeGradient)"
                             strokeWidth="3"
                             filter="url(#glow)"
-                            className="animate-[shimmer_3s_ease-in-out_infinite]"
-                            strokeDasharray="10,5"
+                            strokeDasharray="13,10"
+                            className="route-line"
                           />
                         </g>
                       );
@@ -255,3 +266,4 @@ const Map = () => {
 };
 
 export default Map;
+
