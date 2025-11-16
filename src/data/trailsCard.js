@@ -1,6 +1,9 @@
 import trail1 from "@/assets/trail-1.jpg";
 import trail2 from "@/assets/trail-2.jpg";
 import trail3 from "@/assets/trail-3.jpg";
+import trail4 from "@/assets/trail-4.jpg";
+import trail6 from "@/assets/trail-6.png";
+import trail5 from "@/assets/trail-5.png";
 
 const allTrails = [
     {
@@ -35,7 +38,7 @@ const allTrails = [
     },
     {
       id: 4,
-      image: trail1,
+      image: trail4,
       title: "Ellora's Rock-Cut Marvels",
       region: "Maharashtra",
       era: "Rashtrakuta Dynasty (600-1000 CE)",
@@ -45,7 +48,7 @@ const allTrails = [
     },
     {
       id: 5,
-      image: trail2,
+      image: trail5,
       title: "Konark Sun Temple",
       region: "Odisha",
       era: "Eastern Ganga Dynasty (1250 CE)",
@@ -55,7 +58,7 @@ const allTrails = [
     },
     {
       id: 6,
-      image: trail3,
+      image: trail6,
       title: "Kedarnath Himalayan Shrine",
       region: "Uttarakhand",
       era: "Pandava Era (Ancient)",
@@ -124,5 +127,4 @@ const allTrails = [
       description: "One of the world's richest temples, where millions seek blessings of Lord Venkateswara.",
     },
   ];
-
 export default allTrails;
