@@ -86,7 +86,11 @@ npm run dev
 
 📸 Screenshots
 
-(Replace with your actual UI images)
+<img width="1919" height="865" alt="image" src="https://github.com/user-attachments/assets/9c44badd-b2af-4a15-90f7-6c02bd8de412" />
+<img width="1896" height="857" alt="image" src="https://github.com/user-attachments/assets/bd2fb6fe-5a6e-4d1a-b780-e7307497ee3b" />
+<img width="1919" height="866" alt="image" src="https://github.com/user-attachments/assets/62779eb0-eddb-426c-a3f6-f8c1c6da696c" />
 
-![Home Page](./screenshots/home.png)
-![Temple Details](./screenshots/details.png)
+
+
+
+
