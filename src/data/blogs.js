@@ -1,3 +1,10 @@
+import trail1 from "@/assets/trail-1.jpg";
+import trail2 from "@/assets/trail-2.jpg";
+import trail3 from "@/assets/trail-3.jpg";
+import trail4 from "@/assets/trail-4.jpg";
+import trail6 from "@/assets/trail-6.png";
+import trail5 from "@/assets/trail-5.png";
+
 export const blogs = [
   {
     id: "dawn-at-angkor",
@@ -19,7 +26,7 @@ This is what sacred architecture does—it anchors the ephemeral, gives form to 
     author: "Arjun Mehta",
     date: "2025-01-10",
     readTime: "8 min",
-    image: "/lovable-uploads/hero-temple.jpg",
+    image: trail1,
     temples: ["angkor-wat"],
     region: "Cambodia",
     tags: ["Angkor Wat", "Dawn", "Khmer Empire", "Meditation"],
@@ -47,7 +54,7 @@ Kashi doesn't give you answers. It strips away questions.`,
     author: "Priya Sharma",
     date: "2025-01-05",
     readTime: "10 min",
-    image: "/lovable-uploads/trail-1.jpg",
+    image:  trail2,
     temples: ["kashi-vishwanath"],
     region: "Uttar Pradesh",
     tags: ["Varanasi", "Ganges", "Moksha", "Jyotirlinga"],
@@ -75,7 +82,7 @@ In that light, it was easy to imagine Vijayanagara in its glory—elephants in c
     author: "Vikram Reddy",
     date: "2024-12-28",
     readTime: "9 min",
-    image: "/lovable-uploads/trail-2.jpg",
+    image:  trail3,
     temples: ["hampi-virupaksha"],
     region: "Karnataka",
     tags: ["Hampi", "Vijayanagara", "UNESCO", "Ruins"],

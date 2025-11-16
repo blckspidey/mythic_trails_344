@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { blogs } from "@/data/blogs";
+import { blogs as hardcodedBlogs } from "@/data/blogs";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Heart, Flame, Sparkles, BookOpen, MapPin, Clock, User } from "lucide-react";
 
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const blog = blogs.find(b => b.id === id);
-
-  const [reactions, setReactions] = useState(blog?.reactions || { likes: 0, divine: 0, beautiful: 0, inspiring: 0 });
+  const [blog, setBlog] = useState(null);
+  const [reactions, setReactions] = useState({ likes: 0, divine: 0, beautiful: 0, inspiring: 0 });
   const [userReactions, setUserReactions] = useState([]);
+
+  // Load blogs from localStorage and find the one matching the id
+  useEffect(() => {
+    const storedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    const allBlogs = [...hardcodedBlogs, ...storedBlogs];
+    const foundBlog = allBlogs.find(b => b.id === id);
+    if (foundBlog) {
+      setBlog(foundBlog);
+      setReactions(foundBlog.reactions || { likes: 0, divine: 0, beautiful: 0, inspiring: 0 });
+    }
+  }, [id]);
 
   if (!blog) {
     return (
@@ -71,7 +81,7 @@ const BlogPost = () => {
         </div>
       </section>
 
-      {/* Content - Ancient Letter Style */}
+      {/* Content */}
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-4xl">
           <article className="relative bg-gradient-to-br from-sandstone/20 via-card/80 to-parchment/10 border-4 border-temple-gold/30 rounded-lg p-8 md:p-12 shadow-temple">
@@ -85,7 +95,11 @@ const BlogPost = () => {
             <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-radial from-deep-bronze/30 to-transparent rounded-tr-full" />
 
             <div className="relative mb-8 rounded-lg overflow-hidden border-2 border-temple-gold/40 shadow-divine">
-              <img src={blog.image} alt={blog.title} className="w-full h-[400px] object-cover" />
+              <img 
+                src={blog.image} 
+                alt={blog.title} 
+                className="w-full h-[400px] object-cover" 
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-deep-bronze/50 to-transparent" />
             </div>
 

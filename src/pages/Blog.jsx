@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { blogs } from "@/data/blogs";
+import { blogs as staticBlogs } from "@/data/blogs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Feather, Search, MapPin, Clock, User, Plus, Heart, Flame, Sparkles, BookOpen } from "lucide-react";
@@ -16,36 +16,42 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("all");
   const [selectedTag, setSelectedTag] = useState("all");
+  const [allBlogs, setAllBlogs] = useState([]);
+
+  // Load blogs from localStorage + static blogs
+  useEffect(() => {
+    const storedBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    setAllBlogs([...storedBlogs, ...staticBlogs]); // localStorage blogs first
+  }, []);
 
   // Get unique regions and tags
   const regions = useMemo(() => {
-    const allRegions = blogs.map(b => b.region);
+    const allRegions = allBlogs.map(b => b.region);
     return ["all", ...Array.from(new Set(allRegions))];
-  }, []);
+  }, [allBlogs]);
 
   const tags = useMemo(() => {
-    const allTags = blogs.flatMap(b => b.tags);
+    const allTags = allBlogs.flatMap(b => b.tags);
     return ["all", ...Array.from(new Set(allTags))];
-  }, []);
+  }, [allBlogs]);
 
   // Filter blogs
   const filteredBlogs = useMemo(() => {
-    return blogs.filter(blog => {
+    return allBlogs.filter(blog => {
       const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          blog.author.toLowerCase().includes(searchQuery.toLowerCase());
+                            blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            blog.author.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesRegion = selectedRegion === "all" || blog.region === selectedRegion;
       const matchesTag = selectedTag === "all" || blog.tags.includes(selectedTag);
       
       return matchesSearch && matchesRegion && matchesTag;
     });
-  }, [searchQuery, selectedRegion, selectedTag]);
+  }, [allBlogs, searchQuery, selectedRegion, selectedTag]);
 
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-b from-deep-bronze via-background to-card overflow-hidden">
-        {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(30)].map((_, i) => (
             <div
@@ -82,7 +88,6 @@ const Blog = () => {
       <section className="sticky top-20 z-30 bg-card/95 backdrop-blur-md border-b-2 border-temple-gold/30 shadow-temple">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row gap-4 items-center">
-            {/* Search */}
             <div className="relative flex-1 w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-temple-gold/60" />
               <Input
@@ -93,7 +98,6 @@ const Blog = () => {
               />
             </div>
 
-            {/* Region Filter */}
             <Select value={selectedRegion} onValueChange={setSelectedRegion}>
               <SelectTrigger className="w-full md:w-[200px] bg-background/50 border-temple-gold/40 text-parchment">
                 <SelectValue placeholder="Region" />
@@ -107,7 +111,6 @@ const Blog = () => {
               </SelectContent>
             </Select>
 
-            {/* Tag Filter */}
             <Select value={selectedTag} onValueChange={setSelectedTag}>
               <SelectTrigger className="w-full md:w-[200px] bg-background/50 border-temple-gold/40 text-parchment">
                 <SelectValue placeholder="Tag" />
@@ -122,7 +125,6 @@ const Blog = () => {
             </Select>
           </div>
 
-          {/* Results count */}
           <div className="mt-4 text-center text-parchment/60 font-body text-sm">
             {filteredBlogs.length} {filteredBlogs.length === 1 ? 'journal' : 'journals'} found
           </div>
@@ -137,100 +139,87 @@ const Blog = () => {
               <p className="text-2xl text-parchment/60 font-body">No journals found matching your search</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredBlogs.map((blog, index) => (
-                <Link 
-                  key={blog.id}
-                  to={`/blog/${blog.id}`}
-                  className="group"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <article className="relative bg-gradient-to-br from-sandstone/20 via-card/80 to-parchment/10 border-2 border-temple-gold/30 rounded-lg overflow-hidden shadow-lg hover:shadow-divine transition-all duration-500 hover:-translate-y-2 animate-divine-reveal">
-                    {/* Parchment texture */}
-                    <div className="absolute inset-0 opacity-5 pointer-events-none"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E")`,
-                      }}
-                    />
+           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {filteredBlogs.map((blog, index) => (
+    <Link 
+      key={blog.id}
+      to={`/blog/${blog.id}`}
+      className="group"
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
+      <article className="relative bg-gradient-to-br from-sandstone/20 via-card/80 to-parchment/10 border-2 border-temple-gold/30 rounded-lg overflow-hidden shadow-lg hover:shadow-divine transition-all duration-500 hover:-translate-y-2 animate-divine-reveal h-[500px] flex flex-col">
+        
+        {/* Image */}
+        <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
+          <img 
+            src={blog.image} 
+            alt={blog.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-deep-bronze via-deep-bronze/50 to-transparent" />
+          <div className="absolute top-4 right-4 px-3 py-1 bg-temple-gold/90 backdrop-blur-sm rounded-full text-xs font-body text-deep-bronze flex items-center gap-1">
+            <MapPin className="w-3 h-3" />
+            {blog.region}
+          </div>
+        </div>
 
-                    {/* Image */}
-                    <div className="relative h-48 overflow-hidden">
-                      <img 
-                        src={blog.image} 
-                        alt={blog.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-deep-bronze via-deep-bronze/50 to-transparent" />
-                      
-                      {/* Region badge */}
-                      <div className="absolute top-4 right-4 px-3 py-1 bg-temple-gold/90 backdrop-blur-sm rounded-full text-xs font-body text-deep-bronze flex items-center gap-1">
-                        <MapPin className="w-3 h-3" />
-                        {blog.region}
-                      </div>
-                    </div>
+        {/* Content */}
+        <div className="relative p-6 flex flex-col flex-1 overflow-hidden">
+          <h3 className="text-2xl font-heading font-bold text-gradient-gold mb-2 line-clamp-2 group-hover:text-soft-gold transition-colors">
+            {blog.title}
+          </h3>
 
-                    {/* Content */}
-                    <div className="relative p-6">
-                      <h3 className="text-2xl font-heading font-bold text-gradient-gold mb-3 line-clamp-2 group-hover:text-soft-gold transition-colors">
-                        {blog.title}
-                      </h3>
-                      
-                      <p className="text-parchment/70 font-body text-sm mb-4 line-clamp-3">
-                        {blog.excerpt}
-                      </p>
+          <p className="text-parchment/70 font-body text-sm mb-2 line-clamp-3 overflow-ellipsis overflow-hidden">
+            {blog.excerpt}
+          </p>
 
-                      {/* Meta info */}
-                      <div className="flex items-center gap-4 text-xs text-parchment/60 font-body mb-4">
-                        <div className="flex items-center gap-1">
-                          <User className="w-3 h-3" />
-                          {blog.author}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          {blog.readTime}
-                        </div>
-                      </div>
+          <div className="flex items-center gap-4 text-xs text-parchment/60 font-body mb-2 flex-shrink-0">
+            <div className="flex items-center gap-1">
+              <User className="w-3 h-3" />
+              {blog.author}
+            </div>
+            <div className="flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {blog.readTime}
+            </div>
+          </div>
 
-                      {/* Reactions preview */}
-                      <div className="flex items-center gap-3 text-xs border-t border-temple-gold/20 pt-4">
-                        <div className="flex items-center gap-1 text-parchment/60">
-                          <Heart className="w-3 h-3" />
-                          {blog.reactions.likes}
-                        </div>
-                        <div className="flex items-center gap-1 text-parchment/60">
-                          <Flame className="w-3 h-3" />
-                          {blog.reactions.divine}
-                        </div>
-                        <div className="flex items-center gap-1 text-parchment/60">
-                          <Sparkles className="w-3 h-3" />
-                          {blog.reactions.beautiful}
-                        </div>
-                        <div className="flex items-center gap-1 text-parchment/60">
-                          <BookOpen className="w-3 h-3" />
-                          {blog.reactions.inspiring}
-                        </div>
-                      </div>
+          {/* Reactions */}
+          <div className="flex items-center gap-3 text-xs border-t border-temple-gold/20 pt-2 flex-shrink-0">
+            <div className="flex items-center gap-1 text-parchment/60">
+              <Heart className="w-3 h-3" />
+              {blog.reactions.likes}
+            </div>
+            <div className="flex items-center gap-1 text-parchment/60">
+              <Flame className="w-3 h-3" />
+              {blog.reactions.divine}
+            </div>
+            <div className="flex items-center gap-1 text-parchment/60">
+              <Sparkles className="w-3 h-3" />
+              {blog.reactions.beautiful}
+            </div>
+            <div className="flex items-center gap-1 text-parchment/60">
+              <BookOpen className="w-3 h-3" />
+              {blog.reactions.inspiring}
+            </div>
+          </div>
 
-                      {/* Temple tags */}
-                      {blog.temples.length > 0 && (
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          {blog.temples.slice(0, 2).map(temple => (
-                            <span key={temple} className="text-xs px-2 py-1 bg-temple-gold/10 border border-temple-gold/30 rounded text-soft-gold">
-                              🛕 {temple.split('-')[0]}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Hover glow */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                      <div className="absolute inset-0 bg-gradient-to-t from-temple-gold/10 to-transparent" />
-                    </div>
-                  </article>
-                </Link>
+          {/* Temples */}
+          {blog.temples.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-2 flex-shrink-0">
+              {blog.temples.slice(0, 2).map(temple => (
+                <span key={temple} className="text-xs px-2 py-1 bg-temple-gold/10 border border-temple-gold/30 rounded text-soft-gold">
+                  🛕 {temple.split('-')[0]}
+                </span>
               ))}
             </div>
+          )}
+        </div>
+      </article>
+    </Link>
+  ))}
+</div>
+
           )}
         </div>
       </section>
