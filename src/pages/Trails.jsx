@@ -6,6 +6,7 @@ import { Search, Filter, ChevronRight, MapPin, Calendar, Users, X } from "lucide
 import trail1 from "@/assets/trail-1.jpg";
 import trail2 from "@/assets/trail-2.jpg";
 import trail3 from "@/assets/trail-3.jpg";
+import allTrails from "@/data/trailsCard";
 
 const Trails = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -45,130 +46,6 @@ const Trails = () => {
     "Jain Routes",
   ];
 
-  const allTrails = [
-    {
-      id: 1,
-      image: trail1,
-      title: "Khajuraho's Divine Sculptures",
-      region: "Madhya Pradesh",
-      era: "Chandela Dynasty (950-1050 CE)",
-      difficulty: "Moderate",
-      type: "Cave Temples",
-      description: "Magnificent temples adorned with intricate sculptures depicting divine love, celestial beings, and spiritual enlightenment.",
-    },
-    {
-      id: 2,
-      image: trail2,
-      title: "Hampi's Sacred Ruins",
-      region: "Karnataka",
-      era: "Vijayanagara Empire (1336-1565 CE)",
-      difficulty: "Easy",
-      type: "Mountain Temples",
-      description: "Ancient capital's temple complexes carved from massive boulders, where history and mythology intertwine.",
-    },
-    {
-      id: 3,
-      image: trail3,
-      title: "Varanasi's Eternal Ghats",
-      region: "Uttar Pradesh",
-      era: "Timeless (3000+ years)",
-      difficulty: "Easy",
-      type: "Shore Temples",
-      description: "The spiritual heart of India, where the sacred Ganges flows through millennia of devotion and ritual.",
-    },
-    {
-      id: 4,
-      image: trail1,
-      title: "Ellora's Rock-Cut Marvels",
-      region: "Maharashtra",
-      era: "Rashtrakuta Dynasty (600-1000 CE)",
-      difficulty: "Moderate",
-      type: "Cave Temples",
-      description: "Monumental rock-cut architecture showcasing Buddhist, Hindu, and Jain harmony carved from living rock.",
-    },
-    {
-      id: 5,
-      image: trail2,
-      title: "Konark Sun Temple",
-      region: "Odisha",
-      era: "Eastern Ganga Dynasty (1250 CE)",
-      difficulty: "Easy",
-      type: "Shore Temples",
-      description: "A colossal chariot of the Sun God carved in stone, where every wheel tells stories of cosmic time.",
-    },
-    {
-      id: 6,
-      image: trail3,
-      title: "Kedarnath Himalayan Shrine",
-      region: "Uttarakhand",
-      era: "Pandava Era (Ancient)",
-      difficulty: "Challenging",
-      type: "Mountain Temples",
-      description: "Sacred abode of Lord Shiva nestled in the Himalayas, where pilgrims seek divine blessings amidst eternal snows.",
-    },
-    {
-      id: 7,
-      image: trail1,
-      title: "Meenakshi Amman Temple",
-      region: "Tamil Nadu",
-      era: "Nayak Dynasty (17th Century)",
-      difficulty: "Easy",
-      type: "Shore Temples",
-      description: "Towering gopurams adorned with thousands of vibrant sculptures celebrating the divine feminine.",
-    },
-    {
-      id: 8,
-      image: trail2,
-      title: "Ajanta Cave Paintings",
-      region: "Maharashtra",
-      era: "Gupta Period (2nd Century BCE - 6th Century CE)",
-      difficulty: "Moderate",
-      type: "Cave Temples",
-      description: "Ancient Buddhist murals preserved in stone, depicting Jataka tales and celestial beauty.",
-    },
-    {
-      id: 9,
-      image: trail3,
-      title: "Brihadeeswarar Temple",
-      region: "Tamil Nadu",
-      era: "Chola Dynasty (1010 CE)",
-      difficulty: "Easy",
-      type: "Shore Temples",
-      description: "Architectural marvel with the world's first complete granite temple and towering vimana.",
-    },
-    {
-      id: 10,
-      image: trail1,
-      title: "Dilwara Jain Temples",
-      region: "Rajasthan",
-      era: "Solanki Dynasty (11th-13th Century)",
-      difficulty: "Moderate",
-      type: "Mountain Temples",
-      description: "Exquisite marble carvings showcasing the pinnacle of Jain temple architecture.",
-    },
-    {
-      id: 11,
-      image: trail2,
-      title: "Ranakpur Jain Temple",
-      region: "Rajasthan",
-      era: "15th Century",
-      difficulty: "Easy",
-      type: "Jain Routes",
-      description: "1,444 intricately carved marble pillars, each unique in design, creating a forest of stone artistry.",
-    },
-    {
-      id: 12,
-      image: trail3,
-      title: "Tirupati Balaji",
-      region: "Andhra Pradesh",
-      era: "Ancient (Rebuilt 12th Century)",
-      difficulty: "Moderate",
-      type: "Mountain Temples",
-      description: "One of the world's richest temples, where millions seek blessings of Lord Venkateswara.",
-    },
-  ];
-
-  // Filter trails based on search, region, and type
   const filteredTrails = useMemo(() => {
     return allTrails.filter((trail) => {
       const matchesSearch = 
@@ -187,8 +64,9 @@ const Trails = () => {
         trail.type.toLowerCase() === selectedType.toLowerCase();
 
       return matchesSearch && matchesRegion && matchesType;
-    });
-  }, [searchQuery, selectedRegion, selectedType, allTrails]);
+    })
+    .sort((a, b) => a.id - b.id);
+  }, [searchQuery, selectedRegion, selectedType]);
 
   const clearFilters = () => {
     setSearchQuery("");

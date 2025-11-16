@@ -2,62 +2,24 @@ import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MapPin, Calendar, Users, ExternalLink } from "lucide-react";
 import trail1 from "@/assets/trail-1.jpg";
+import { trails } from "@/data/trails";
 
 const TrailDetail = () => {
   const { id } = useParams();
-
-  const trail = {
-    title: "Khajuraho's Divine Sculptures",
-    subtitle: "Trail of the Celestial Artisans",
-    region: "Madhya Pradesh, India",
-    civilization: "Chandela Dynasty",
-    builtIn: "950-1050 CE",
-    deity: "Shiva, Vishnu, Jain Tirthankaras",
-    architectureStyle: "Nagara Style",
-    difficulty: "Moderate",
-    bestTime: "October to March",
-    trailLength: "2.5 km circuit",
-    images: [trail1, trail1, trail1, trail1, trail1, trail1],
-    story: `The temples of Khajuraho stand as testament to the Chandela dynasty's devotion and artistic mastery. Built between 950 and 1050 CE, these magnificent structures were conceived as earthly representations of celestial palaces where gods and goddesses dwell in eternal bliss.
-
-Legend speaks of the moon god Chandra descending to earth, captivated by the beauty of Hemavati, a Brahmin priest's daughter bathing in a moonlit pool. From their divine union was born Chandravarman, the founder of the Chandela dynasty. Hemavati, blessed by Chandra, raised her son in the forest, where he grew strong and wise.
-
-Years later, when Chandravarman ascended to power, his mother appeared in his dreams, urging him to build temples that would celebrate the fullness of human experience—the sacred and the sensual, the divine and the earthly. She prophesied that these temples would stand through millennia, teaching future generations that spirituality encompasses all aspects of existence.
-
-The Chandela kings heeded this divine message, creating 85 temples across 21 square kilometers. Each stone was carved with devotion, each sculpture telling stories of gods, goddesses, celestial beings, and the eternal dance of creation. The erotic sculptures, far from being merely sensual, represent the tantric philosophy that spiritual liberation comes through embracing rather than denying the material world.`,
-    
-    history: `**12th Century** — The golden age of temple construction under Chandela patronage. Master sculptors from across the kingdom gathered to create these architectural marvels.
-
-**1202 CE** — The fall of the Chandela dynasty to Sultan Qutb-ud-din Aibak marked the end of new construction, though the temples remained places of worship.
-
-**14th-15th Century** — As religious practices shifted and political powers changed, many temples fell into decline. Dense forests gradually reclaimed the site.
-
-**1838** — British surveyor T.S. Burt "rediscovered" the temples, bringing them to world attention. His accounts sparked international interest in these forgotten masterpieces.
-
-**1986** — UNESCO designated Khajuraho as a World Heritage Site, recognizing its "outstanding universal value" and unique architectural significance.
-
-**Present Day** — Of the original 85 temples, 25 survive in varying states of preservation. They continue to draw pilgrims, scholars, and travelers seeking to understand this unique expression of medieval Indian spirituality.`,
-    
-    mythology: `The temples embody the concept of "Moksha" (liberation) through the integration of "Kama" (desire), "Artha" (worldly pursuits), and "Dharma" (righteousness). The five principal temples represent the five elements—earth, water, fire, air, and space—with the central Kandariya Mahadev temple symbolizing Mount Meru, the cosmic mountain at the center of Hindu cosmology.
-
-The intricate carvings depict not only gods and goddesses but also "apsaras" (celestial dancers), "surasundaris" (divine beauties), and mythical creatures from ancient texts. Each sculpture serves as a meditation aid, guiding devotees through the complete spectrum of human experience toward ultimate spiritual realization.`,
-    
-    architecture: `**Construction Materials**: Sandstone blocks from the Panna region, renowned for their warm golden color and fine grain that allowed for intricate carving.
-
-**Structural Innovation**: Built without mortar using the interlocking stone technique, demonstrating advanced engineering knowledge.
-
-**Design Philosophy**: Based on the "Nagara" style of North Indian temple architecture, featuring high platforms, intricate spires (shikharas), and profusely decorated exteriors.
-
-**Sculptural Program**: Over 900 sculptures per temple on average, with the Kandariya Mahadev temple boasting more than 870 carved figures.
-
-**Sacred Geometry**: The central sanctum is positioned using astronomical calculations to align with celestial events, particularly the vernal equinox.`,
-    
-    location: {
-      lat: 24.8318,
-      lng: 79.9199,
-    },
-  };
-
+  const trail = trails.find((t) => t.id === Number(id));
+ 
+ if (!trail) {
+    return (
+      <div className="min-h-screen pt-20 pb-16 text-center text-parchment">
+        <h1 className="text-4xl font-bold mb-4">Trail Not Found</h1>
+        <Link to="/trails">
+          <Button className="bg-card border-temple-gold text-parchment">
+            <ArrowLeft className="mr-2" /> Back to Trails
+          </Button>
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen pt-20 pb-16">
       {/* Back Button */}
@@ -99,7 +61,7 @@ The intricate carvings depict not only gods and goddesses but also "apsaras" (ce
         <div className="container mx-auto max-w-5xl">
           <div className="relative group">
             <img
-              src={trail1}
+              src={trail.image}
               alt={trail.title}
               className="w-full h-[600px] object-cover rounded-lg shadow-temple border-4 border-temple-gold/30 group-hover:border-temple-gold transition-all duration-500"
             />

@@ -7,7 +7,7 @@ import omSymbol from "@/assets/om-symbol.png";
 import trail1 from "@/assets/trail-1.jpg";
 import trail2 from "@/assets/trail-2.jpg";
 import trail3 from "@/assets/trail-3.jpg";
-//temple information for featured trails
+
 const Home = () => {
   const featuredTrails = [
     {
@@ -15,21 +15,21 @@ const Home = () => {
       image: trail1,
       title: "Khajuraho's Divine Sculptures",
       subtitle: "Madhya Pradesh · Chandela Era",
-      description: "Ancient temples draped in celestial artistry.",
+      description: "Ancient temples adorned with celestial artistry",
     },
     {
       id: 2,
       image: trail2,
       title: "Hampi's Sacred Ruins",
       subtitle: "Karnataka · Vijayanagara Empire",
-      description: "Where ancient pillars murmur lost hymns.",
+      description: "Where stone pillars whisper forgotten hymns",
     },
     {
       id: 3,
       image: trail3,
       title: "Varanasi's Eternal Ghats",
       subtitle: "Uttar Pradesh · Timeless",
-      description: "The sacred heart of ancient Bharat.",
+      description: "The spiritual heart of ancient Bharat",
     },
   ];
 
@@ -75,14 +75,14 @@ const Home = () => {
                 <ChevronRight className="ml-2" />
               </Button>
             </Link>
-            <Link to="/plantrip">
+            <Link to="/blog">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-temple-gold/60 text-temple-gold bg-transparent hover:bg-temple-gold/10 hover:border-temple-gold hover:shadow-divine transition-all duration-300 font-nav tracking-wide text-base px-8 py-6"
               >
                 <BookOpen className="mr-2" />
-                PLAN TRIP
+                READ BLOGS
               </Button>
             </Link>
           </div>
